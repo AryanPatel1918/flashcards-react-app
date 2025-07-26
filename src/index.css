@@ -40,11 +40,19 @@ body {
   text-align: center;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   width: 100%;
+  min-height: 250px;
+  max-height: 250px;
+  overflow-y: auto; 
   cursor: pointer;
   border-radius: 10px;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.5);
+}
+
+.card > h2 {
+  word-break: break-word;
 }
 
 .card > h2.answer {
@@ -67,7 +75,7 @@ body {
   color: white;
   border: none;
   cursor: pointer;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.5);
 }
 
 .previous-btn:hover,

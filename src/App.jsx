@@ -13,16 +13,11 @@ export default function App() {
   const { question, answer, showingQuestion } = cards[cardIndex];
 
   function toggle() {
-    let newCards = [...cards];
-    newCards[cardIndex] = {
-      ...newCards[cardIndex],
-      showingQuestion: !newCards[cardIndex].showingQuestion,
-    };
-    setCards(newCards);
-
-    setCards(cards.map((card, index) => 
-      index == cardIndex ? {...card, showingQuestion: !card.showingQuestion} : card
-    ))
+    setCards(prevCards => 
+      prevCards.map((card, index) => 
+        index === cardIndex ? {...card, showingQuestion: !card.showingQuestion} : card
+      ) 
+    )
   }
 
   function prevCard() {
@@ -36,7 +31,7 @@ export default function App() {
   return (
     <div className="container">
       <div className="card" onClick={toggle}>
-          {showingQuestion ? <h2>{question}</h2> : <h2 className="answer">{answer}</h2>}
+          <h2 className={showingQuestion ? "" : "answer"}>{showingQuestion ? question : answer}</h2>
       </div>
       <div className="btn-container">
         <button className="previous-btn" onClick={prevCard} disabled={cardIndex === 0}>
