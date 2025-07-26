@@ -1,1 +1,1 @@
-# React + Vite
+# Flashcards React App

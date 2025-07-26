@@ -19,6 +19,10 @@ export default function App() {
       showingQuestion: !newCards[cardIndex].showingQuestion,
     };
     setCards(newCards);
+
+    setCards(cards.map((card, index) => 
+      index == cardIndex ? {...card, showingQuestion: !card.showingQuestion} : card
+    ))
   }
 
   function prevCard() {
@@ -30,16 +34,15 @@ export default function App() {
   }
 
   return (
-    <div>
-      {showingQuestion ? <h4>{question}</h4> : <p>{answer}</p>}
-      <button onClick={toggle}>
-        {showingQuestion ? "Show" : "Hide"} Answer
-      </button>
-      <br />
-      <div>
+    <div className="container">
+      <div className="card" onClick={toggle}>
+          {showingQuestion ? <h2>{question}</h2> : <h2 className="answer">{answer}</h2>}
+      </div>
+      <div className="btn-container">
         <button className="previous-btn" onClick={prevCard} disabled={cardIndex === 0}>
           &lt;
         </button>
+        <span className="question-counter">{cardIndex+1}/{cards.length}</span>
         <button className="next-btn" onClick={nextCard} disabled={cardIndex === cards.length - 1}>
           &gt;
         </button>
