@@ -1,6 +1,6 @@
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background-color: #F2F0EF;
+  background-color: hsl(248, 57%, 45%);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
@@ -39,20 +39,23 @@ body {
   padding: 1.5rem;
   text-align: center;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 100%;
-  min-height: 250px;
-  max-height: 250px;
+  height: 250px;
   overflow-y: auto; 
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 15px;
   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.5);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.card:active {
+  transform: translate(5px, 5px);
+  box-shadow: none;
 }
 
 .card > h2 {
   word-break: break-word;
+  margin: auto; /* card has display: flex and width so margin: auto will center the h2 */
 }
 
 .card > h2.answer {
@@ -76,6 +79,7 @@ body {
   border: none;
   cursor: pointer;
   box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.5);
+  transition: background-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
 }
 
 .previous-btn:hover,
@@ -83,9 +87,50 @@ body {
   background-color: hsl(256, 96%, 60%);
 }
 
+.previous-btn:active,
+.next-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
 .previous-btn:disabled,
 .next-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   background-color: #ccc;
+}
+
+.previous-btn:disabled:active,
+.next-btn:disabled:active {
+  transform: none;
+  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.5);
+}
+
+
+@media (max-width: 600px) {
+  .container {
+    width: 90vw;
+    gap: 1rem;
+  }
+
+  .card {
+    max-height: 200px;
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  .card > h2 {
+    font-size: 1.2rem;
+  }
+
+  .question-counter {
+    font-size: 1.2rem;
+  }
+
+  .previous-btn,
+  .next-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+  }
 }

@@ -1,31 +1,25 @@
-import { useState } from "react";
-import Cards from "./flashcards.js";
+import { useState } from "react"
+import Cards from "./flashcards.js"
 
 export default function App() {
-  const [cardIndex, setCardIndex] = useState(0);
-  const [cards, setCards] = useState(() =>
-    Cards.map(card => ({
-      ...card,
-      showingQuestion: true,
-    }))
-  );
+  const [cardIndex, setCardIndex] = useState(0)
+  const [showingQuestion, setShowingQuestion] = useState(true)
+  const [cards, setCards] = useState(() => Cards)
 
-  const { question, answer, showingQuestion } = cards[cardIndex];
+  const { question, answer } = cards[cardIndex]
 
   function toggle() {
-    setCards(prevCards => 
-      prevCards.map((card, index) => 
-        index === cardIndex ? {...card, showingQuestion: !card.showingQuestion} : card
-      ) 
-    )
+    setShowingQuestion(prev => !prev)
   }
 
   function prevCard() {
-    setCardIndex((prev) => prev - 1);
+    setCardIndex(index => index - 1)
+    setShowingQuestion(true)
   }
 
   function nextCard() {
-    setCardIndex((prev) => prev + 1);
+    setCardIndex(index => index + 1)
+    setShowingQuestion(true)
   }
 
   return (
@@ -43,5 +37,5 @@ export default function App() {
         </button>
       </div>
     </div>
-  );
+  )
 }
